@@ -10,6 +10,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     private StarterAssetsInputs input;
     private Weapon actualWeapon;
+    private float fireTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +30,11 @@ public class PlayerWeaponController : MonoBehaviour
     {
         if (input.shoot && actualWeapon)
         {
-            actualWeapon.Shoot();
-        }
+            if (Time.time - fireTimer > actualWeapon.WeaponStats.Stats.ShootTime/ actualWeapon.WeaponStats.Stats.ShootRate)
+            {
+                fireTimer = Time.time;
+                actualWeapon.Shoot();
+            }
+        }       
     }
 }

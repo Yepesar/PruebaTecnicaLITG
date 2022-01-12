@@ -26,10 +26,12 @@ public class ProjectileWeapon : Weapon
        bullet.gameObject.SetActive(true);
        bullet.transform.position = ExitPoint.position;
        Vector3 direction = ExitPoint.position - StartPoint.position;
-       direction.Normalize();
 
-       bullet.GetComponent<Bullet>().Init(WeaponStats);
-       bullet.GetComponent<Bullet>().Run(direction);
+        if (bullet)
+        {
+            bullet.GetComponent<Bullet>().Init(WeaponStats);
+            bullet.GetComponent<Bullet>().Run(direction);
+        }
     }
 
 }

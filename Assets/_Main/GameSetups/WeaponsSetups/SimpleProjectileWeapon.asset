@@ -17,7 +17,7 @@ MonoBehaviour:
   poolLength: 10
   stats:
     weaponType: 0
-    weaponRange: 5
+    weaponRange: 25
     damage: 1
     bulletStats:
       bulletDrop:
@@ -26,25 +26,34 @@ MonoBehaviour:
         - serializedVersion: 3
           time: 0
           value: 1
-          inSlope: -0.018731244
-          outSlope: -0.018731244
+          inSlope: -0.06543584
+          outSlope: -0.06543584
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
-          outWeight: 0.12591241
+          outWeight: 0.16720143
+        - serializedVersion: 3
+          time: 0.8621971
+          value: 0.8596097
+          inSlope: -0.54602265
+          outSlope: -0.54602265
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.08779983
+          outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
           value: 0
-          inSlope: -3.3029375
-          outSlope: -3.3029375
+          inSlope: -3.0157278
+          outSlope: -3.0157278
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.03284669
+          inWeight: 0.010948896
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-      bulletSpeed: 10
+      bulletSpeed: 25
       bulletHeight: 1.5
     maxAmmo: 10
     shootRate: 1

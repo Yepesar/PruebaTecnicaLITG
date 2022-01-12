@@ -34,6 +34,8 @@ public class PoolingSystem : MonoBehaviour
             }
 
             PoolingItem item = new PoolingItem(name, newList);
+            item.Count = ammount;
+            item.MaxItems = ammount;
             pool.Add(item);
         }    
         else
@@ -48,28 +50,23 @@ public class PoolingSystem : MonoBehaviour
 
         if (ItemPoolExist(id))
         {
-            List<GameObject> objs = new List<GameObject>();
+            PoolingItem targetItem = null;
 
             foreach (PoolingItem item in pool)
             {
                 if (item.ID == id)
                 {
-                    objs = item.GameObjects;
+                    targetItem = item;
                 }
             }
 
-            for (int i = 0; i < objs.Count; i++)
+            if (targetItem.Count <= 0)
             {
-                if (!objs[i].activeInHierarchy)
-                {
-                    obj =  objs[i];
-                }
-
-                if (i == objs.Count - 1 && !obj)
-                {
-                    obj = objs[0];
-                }
+                targetItem.Count = targetItem.MaxItems;
             }
+           
+            obj = targetItem.GameObjects[targetItem.Count - 1];
+            targetItem.Count--;
         }
         else
         {
@@ -96,6 +93,9 @@ public class PoolingItem
 {
     private string iD;
     private List<GameObject> gameObjects;
+    private int count = 0;
+    private int maxItems;
+
 
     public PoolingItem(string iD, List<GameObject> gameObjects)
     {
@@ -105,4 +105,6 @@ public class PoolingItem
 
     public string ID { get => iD; set => iD = value; }
     public List<GameObject> GameObjects { get => gameObjects; set => gameObjects = value; }
+    public int Count { get => count; set => count = value; }
+    public int MaxItems { get => maxItems; set => maxItems = value; }
 }

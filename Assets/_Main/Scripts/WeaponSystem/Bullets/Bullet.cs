@@ -20,22 +20,36 @@ public abstract class Bullet : MonoBehaviour
     public void Init(SOWeaponStats weaponStats)
     {
         bulletStats = weaponStats.Stats.BulletStats;
-        bulletStats.BulletRange = weaponStats.Stats.WeaponRange;
         this.bulletStats.Damage = weaponStats.Stats.Damage;
     }
 
     public abstract void Run(Vector3 direction);
+    public abstract void Stop();
 
     private void OnCollisionEnter(Collision collision)
-    {
-        GameObject hitVFX = PoolingSystem.Instance.GetAvailableItem(hitVFXPrefab.name);
-
-        if (hitVFX)
+    {       
+        if (hitVFXPrefab)
         {
+            GameObject hitVFX = PoolingSystem.Instance.GetAvailableItem(hitVFXPrefab.name);
             hitVFX.transform.position = transform.position;
             hitVFX.GetComponent<ParticleSystem>().Play();
         }
 
+        Stop();
+        gameObject.SetActive(false);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (hitVFXPrefab)
+        {
+            GameObject hitVFX = PoolingSystem.Instance.GetAvailableItem(hitVFXPrefab.name);
+
+            hitVFX.transform.position = transform.position;
+            hitVFX.GetComponent<ParticleSystem>().Play();
+        }
+
+        Stop();
         gameObject.SetActive(false);
     }
 }

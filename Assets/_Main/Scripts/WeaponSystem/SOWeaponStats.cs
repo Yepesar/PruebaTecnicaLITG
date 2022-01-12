@@ -21,7 +21,6 @@ public enum WeaponType {Projectile, Atractor, Divider }
 public class WeaponStatsModel
 {
     [SerializeField] private WeaponType weaponType;
-    [SerializeField] private float weaponRange = 0f;
     [SerializeField] private int damage;
     [SerializeField] private BulletStatsModel bulletStats;
     [SerializeField] private int maxAmmo;
@@ -34,7 +33,6 @@ public class WeaponStatsModel
     public float ShootRate { get => shootRate; set => shootRate = value; }
     public float ShootTime { get => shootTime; set => shootTime = value; }
     public BulletStatsModel BulletStats { get => bulletStats; set => bulletStats = value; }
-    public float WeaponRange { get => weaponRange; set => weaponRange = value; }
 }
 
 [System.Serializable]
@@ -44,12 +42,10 @@ public class BulletStatsModel
     [SerializeField] private float bulletSpeed;
     [SerializeField] private float bulletHeight;
 
-    private float bulletRange = 1f;
     private int damage;
 
     public AnimationCurve BulletDrop { get => bulletDrop; set => bulletDrop = value; }
     public float BulletSpeed { get => bulletSpeed; set => bulletSpeed = value; }
     public float BulletHeight { get => bulletHeight; set => bulletHeight = value; }
-    public float BulletRange { get => bulletRange; set => bulletRange = value; }
     public int Damage { get => damage; set => damage = value; }
 }

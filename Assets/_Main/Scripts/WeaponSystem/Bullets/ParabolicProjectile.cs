@@ -6,39 +6,46 @@ public class ParabolicProjectile : Bullet
 {
     private IEnumerator coroutine;
     private Vector3 direction;
+    private Rigidbody rb;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     public override void Run(Vector3 direction)
     {
         if (coroutine == null)
         {
+            if (!rb)
+            {
+                rb = GetComponent<Rigidbody>();
+            }
+
+            rb.velocity = Vector3.zero;
+
             this.direction = direction;
-            coroutine = FollowPath();
-            StartCoroutine(FollowPath());
+            rb.AddForce(direction * BulletStats.BulletSpeed, ForceMode.Impulse);
+            coroutine = DropControl();
+            StartCoroutine(coroutine);
         }
     }
 
-    private IEnumerator FollowPath()
-    {
-        float totalDistance = (direction.magnitude * BulletStats.BulletRange);
-        direction.Normalize();
-
-        float distanceTravelled = 0f;
-
-        Vector3 newPosition = transform.position;
-
-        while (distanceTravelled <= totalDistance)
-        {
-            Vector3 deltaPath = direction * (BulletStats.BulletSpeed * Time.deltaTime);
-            newPosition += deltaPath;
-            distanceTravelled += deltaPath.magnitude;
-
-            newPosition.y = BulletStats.BulletHeight * BulletStats.BulletDrop.Evaluate(distanceTravelled / totalDistance);
-
-            transform.position = newPosition;
+    private IEnumerator DropControl()
+    {       
+        while (true)
+        {                    
+            float dropRate = BulletStats.BulletDrop.Evaluate(Time.deltaTime);
+            rb.AddForce(Physics.gravity * dropRate,ForceMode.Acceleration);
 
             yield return null;
         }
+    }
 
+    public override void Stop()
+    {
+        rb.velocity = Vector3.zero;
+        StopCoroutine(coroutine);
         coroutine = null;
     }
 }
