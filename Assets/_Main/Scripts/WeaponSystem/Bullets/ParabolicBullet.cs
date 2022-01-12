@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParabolicProjectile : Bullet
+public class ParabolicBullet : Bullet
 {
     private IEnumerator coroutine;
     private Vector3 direction;

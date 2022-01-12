@@ -38,14 +38,32 @@ public class WeaponStatsModel
 [System.Serializable]
 public class BulletStatsModel
 {
-    [SerializeField] private AnimationCurve bulletDrop;
     [SerializeField] private float bulletSpeed;
-    [SerializeField] private float bulletHeight;
+
+    [Space]
+
+    [Header("Projectile settings")]
+    [SerializeField] private AnimationCurve bulletDrop;
+    
+    [Space]
+
+    [Header("Attractor settings")]
+    [SerializeField] private float maxOrbitingObjects;
+    [SerializeField] private float minOrbitingSpeed;
+    [SerializeField] private float maxOrbitingSpeed;
+    [SerializeField] private float captureRange;
+    [SerializeField] private float orbitingRadius;
+    [SerializeField] private LayerMask[] targetLayers;
 
     private int damage;
 
     public AnimationCurve BulletDrop { get => bulletDrop; set => bulletDrop = value; }
     public float BulletSpeed { get => bulletSpeed; set => bulletSpeed = value; }
-    public float BulletHeight { get => bulletHeight; set => bulletHeight = value; }
     public int Damage { get => damage; set => damage = value; }
+    public float MaxOrbitingObjects { get => maxOrbitingObjects; set => maxOrbitingObjects = value; }
+    public float OrbitingSpeed { get => minOrbitingSpeed; set => minOrbitingSpeed = value; }
+    public float CaptureRange { get => captureRange; set => captureRange = value; }
+    public float MaxOrbitingSpeed { get => maxOrbitingSpeed; set => maxOrbitingSpeed = value; }
+    public LayerMask[] TargetLayers { get => targetLayers; set => targetLayers = value; }
+    public float OrbitingRadius { get => orbitingRadius; set => orbitingRadius = value; }
 }
