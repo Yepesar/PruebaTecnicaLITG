@@ -21,13 +21,18 @@ public class FPSPlayerController : MonoBehaviour
     void Update()
     {
         Vector2 movement = inputManager.GetPlayerMovement();
-        Debug.Log(movement);
         Move(new Vector3(movement.x, 0f, movement.y));
+        LookAtCamera();
+    }
 
+    private void LookAtCamera()
+    {       
+        transform.rotation = new Quaternion(0, camera.rotation.y, 0, 1);
     }
 
     private void Move(Vector3 direction)
     {
+        //Moving forward or backwards
         if ( direction.z != 0)
         {
             if (direction.z > 0)
@@ -40,6 +45,7 @@ public class FPSPlayerController : MonoBehaviour
             }        
         }
 
+        //Moving left or right
         if (direction.x != 0)
         {
             if (direction.x > 0)
