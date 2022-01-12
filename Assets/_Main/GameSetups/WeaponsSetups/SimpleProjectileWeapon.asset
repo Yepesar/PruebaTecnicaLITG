@@ -13,12 +13,39 @@ MonoBehaviour:
   m_Name: SimpleProjectileWeapon
   m_EditorClassIdentifier: 
   profileName: SimpleProjectile
-  weaponPrefab: {fileID: 0}
-  weaponProjectilePrefab: {fileID: 0}
-  weaponStats:
+  weaponProjectilePrefab: {fileID: 376495966616068461, guid: e45a66c48e136914cace13b408ee6bf0, type: 3}
+  poolLength: 10
+  stats:
     weaponType: 0
+    weaponRange: 5
     damage: 1
-    bulletSpeed: 20
+    bulletStats:
+      bulletDrop:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: -0.018731244
+          outSlope: -0.018731244
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.12591241
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: -3.3029375
+          outSlope: -3.3029375
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.03284669
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      bulletSpeed: 10
+      bulletHeight: 1.5
     maxAmmo: 10
     shootRate: 1
     shootTime: 1

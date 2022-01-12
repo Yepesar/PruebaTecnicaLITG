@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class PoolingSystem : MonoBehaviour
 {
-    private static PoolingSystem instance;
-    public static PoolingSystem Instance { get => instance; set => instance = value; }
-    private List<PoolingItem> pool;
+    public static PoolingSystem Instance; 
+    private List<PoolingItem> pool = new List<PoolingItem>();
    
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {
@@ -45,6 +44,8 @@ public class PoolingSystem : MonoBehaviour
 
     public GameObject GetAvailableItem(string id)
     {
+        GameObject obj = null;
+
         if (ItemPoolExist(id))
         {
             List<GameObject> objs = new List<GameObject>();
@@ -61,7 +62,12 @@ public class PoolingSystem : MonoBehaviour
             {
                 if (!objs[i].activeInHierarchy)
                 {
-                    return objs[i];
+                    obj =  objs[i];
+                }
+
+                if (i == objs.Count - 1 && !obj)
+                {
+                    obj = objs[0];
                 }
             }
         }
@@ -70,7 +76,7 @@ public class PoolingSystem : MonoBehaviour
             Debug.LogError("The pool dont have an item with the id " + id);
         }
 
-        return null;
+        return obj;
     }
 
     private bool ItemPoolExist(string id)
@@ -82,7 +88,6 @@ public class PoolingSystem : MonoBehaviour
                 return true;
             }
         }
-
         return false;
     }
 }

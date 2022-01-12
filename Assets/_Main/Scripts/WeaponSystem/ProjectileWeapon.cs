@@ -4,18 +4,32 @@ using UnityEngine;
 
 public class ProjectileWeapon : Weapon
 {
-    public override void Init(Transform weaponPoint)
+    public override void Init()
     {
-        throw new System.NotImplementedException();
+        if (PoolingSystem.Instance)
+        {
+            PoolingSystem.Instance.CreatePoolItem(WeaponStats.WeaponProjectilePrefab, WeaponStats.PoolLength, WeaponStats.WeaponProjectilePrefab.name);
+        }
+        else
+        {
+            Debug.LogError("Theres not an active pooling system on the scene!");
+        }
     }
 
     public override void Reload()
     {
-        throw new System.NotImplementedException();
     }
 
-    public override void Shoot(Vector3 direction)
+    public override void Shoot()
     {
-        throw new System.NotImplementedException();
+       GameObject bullet =  PoolingSystem.Instance.GetAvailableItem(WeaponStats.WeaponProjectilePrefab.name);
+       bullet.gameObject.SetActive(true);
+       bullet.transform.position = ExitPoint.position;
+       Vector3 direction = ExitPoint.position - StartPoint.position;
+       direction.Normalize();
+
+       bullet.GetComponent<Bullet>().Init(WeaponStats);
+       bullet.GetComponent<Bullet>().Run(direction);
     }
+
 }
