@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 537f3ebf53ff58943b523fe3ef253c25, type: 3}
+  m_Name: SimpleMissileWeapon
+  m_EditorClassIdentifier: 
+  profileName: SimpleMissileWeapon
+  weaponProjectilePrefab: {fileID: 2024758938282608331, guid: 28de48de18a04b54e8bb52151a9f39cd, type: 3}
+  poolLength: 10
+  stats:
+    weaponType: 2
+    damage: 10
+    range: 30
+    bulletStats:
+      bulletSpeed: 35
+      bulletDrop:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minOrbitSpeed: 0
+      maxOrbitSpeed: 0
+      minOrbitRadius: 0
+      maxOrbitRadius: 0
+      minRadiusSpeed: 0
+      maxRadiusSpeed: 0
+      maxOrbitingObjects: 0
+      captureRange: 0
+      attractorTargetLayers: []
+      rotationSpeed: 15
+      searchingRange: 5
+      missileTargetMasks:
+      - serializedVersion: 2
+        m_Bits: 64
+    maxAmmo: 5
+    shootRate: 1
+    shootTime: 0.5
+  shakeFrequency: 0.1
+  shakeIntensity: 0.1
+  shakeDuration: 0.1
