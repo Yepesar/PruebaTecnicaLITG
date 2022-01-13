@@ -29,8 +29,8 @@ MonoBehaviour:
         m_RotationOrder: 4
       minOrbitSpeed: 25
       maxOrbitSpeed: 300
-      minOrbitRadius: 1.2
-      maxOrbitRadius: 5.5
+      minOrbitRadius: 5
+      maxOrbitRadius: 8
       minRadiusSpeed: 25
       maxRadiusSpeed: 300
       maxOrbitingObjects: 10
