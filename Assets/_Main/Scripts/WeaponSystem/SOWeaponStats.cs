@@ -22,6 +22,7 @@ public class WeaponStatsModel
 {
     [SerializeField] private WeaponType weaponType;
     [SerializeField] private int damage;
+    [SerializeField] private float range;
     [SerializeField] private BulletStatsModel bulletStats;
     [SerializeField] private int maxAmmo;
     [SerializeField] private float shootRate;
@@ -33,6 +34,7 @@ public class WeaponStatsModel
     public float ShootRate { get => shootRate; set => shootRate = value; }
     public float ShootTime { get => shootTime; set => shootTime = value; }
     public BulletStatsModel BulletStats { get => bulletStats; set => bulletStats = value; }
+    public float Range { get => range; set => range = value; }
 }
 
 [System.Serializable]
@@ -48,22 +50,33 @@ public class BulletStatsModel
     [Space]
 
     [Header("Attractor settings")]
-    [SerializeField] private float maxOrbitingObjects;
-    [SerializeField] private float minOrbitingSpeed;
-    [SerializeField] private float maxOrbitingSpeed;
+    [SerializeField] private float minOrbitSpeed;
+    [SerializeField] private float maxOrbitSpeed;
+
+    [SerializeField] private float minOrbitRadius;
+    [SerializeField] private float maxOrbitRadius;
+
+    [SerializeField] private float minRadiusSpeed;
+    [SerializeField] private float maxRadiusSpeed;
+
+    [SerializeField] private int maxOrbitingObjects;
     [SerializeField] private float captureRange;
-    [SerializeField] private float orbitingRadius;
     [SerializeField] private LayerMask[] targetLayers;
 
+    private float range;
     private int damage;
 
     public AnimationCurve BulletDrop { get => bulletDrop; set => bulletDrop = value; }
     public float BulletSpeed { get => bulletSpeed; set => bulletSpeed = value; }
     public int Damage { get => damage; set => damage = value; }
-    public float MaxOrbitingObjects { get => maxOrbitingObjects; set => maxOrbitingObjects = value; }
-    public float OrbitingSpeed { get => minOrbitingSpeed; set => minOrbitingSpeed = value; }
     public float CaptureRange { get => captureRange; set => captureRange = value; }
-    public float MaxOrbitingSpeed { get => maxOrbitingSpeed; set => maxOrbitingSpeed = value; }
     public LayerMask[] TargetLayers { get => targetLayers; set => targetLayers = value; }
-    public float OrbitingRadius { get => orbitingRadius; set => orbitingRadius = value; }
+    public float MinOrbitSpeed { get => minOrbitSpeed; set => minOrbitSpeed = value; }
+    public float MaxOrbitSpeed { get => maxOrbitSpeed; set => maxOrbitSpeed = value; }
+    public float MinOrbitRadius { get => minOrbitRadius; set => minOrbitRadius = value; }
+    public float MaxOrbitRadius { get => maxOrbitRadius; set => maxOrbitRadius = value; }
+    public float MinRadiusSpeed { get => minRadiusSpeed; set => minRadiusSpeed = value; }
+    public float MaxRadiusSpeed { get => maxRadiusSpeed; set => maxRadiusSpeed = value; }
+    public int MaxOrbitingObjects { get => maxOrbitingObjects; set => maxOrbitingObjects = value; }
+    public float Range { get => range; set => range = value; }
 }

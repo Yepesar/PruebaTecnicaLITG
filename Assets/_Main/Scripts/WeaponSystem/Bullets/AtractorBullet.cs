@@ -7,6 +7,7 @@ public class AtractorBullet : Bullet
     private Rigidbody rb;
     private int atractedObjectsCount;
     private List<GameObject> atractedObjects = new List<GameObject>();
+    private List<OrbitProfile> orbiters = new List<OrbitProfile>();
     private IEnumerator attractC;
 
     private void Start()
@@ -40,11 +41,9 @@ public class AtractorBullet : Bullet
 
     private void Orbit()
     {
-        for (int i = 0; i < atractedObjects.Count; i++)
+        for (int i = 0; i < orbiters.Count; i++)
         {
-            atractedObjects[i].transform.RotateAround(transform.position, Vector3.right, BulletStats.OrbitingSpeed * Time.deltaTime);
-            Vector3 desirePos = (atractedObjects[i].transform.position - transform.position).normalized * BulletStats.OrbitingRadius + transform.position;
-            atractedObjects[i].transform.position = Vector3.MoveTowards(atractedObjects[i].transform.position, desirePos, Time.deltaTime * BulletStats.OrbitingSpeed);
+            orbiters[i].Orbit();
         }
     }
 
@@ -58,6 +57,10 @@ public class AtractorBullet : Bullet
                 if (IsTargateable(obj.gameObject.layer) && !ItemOnPool(obj.gameObject))
                 {
                     atractedObjects.Add(obj.gameObject);
+
+                    OrbitProfile orbiter = new OrbitProfile(transform, obj.transform, BulletStats.MinOrbitSpeed, BulletStats.MaxOrbitSpeed, BulletStats.MinOrbitRadius, BulletStats.MaxOrbitRadius, BulletStats.MinRadiusSpeed, BulletStats.MaxRadiusSpeed);
+                    orbiters.Add(orbiter);
+
                     atractedObjectsCount++;
 
                     Rigidbody rb = obj.gameObject.GetComponent<Rigidbody>();
@@ -102,14 +105,20 @@ public class AtractorBullet : Bullet
                 rb.useGravity = true;
             }
         }
+
+        atractedObjects.Clear();
+        orbiters.Clear();
     }
 
     public override void Stop()
     {
+        ReleaseObjects();
         rb.velocity = Vector3.zero;
+        orbiters.Clear();
         atractedObjects.Clear();
         StopAllCoroutines();
         attractC = null;
+        gameObject.SetActive(false);
     }
 
     private bool ItemOnPool(GameObject obj)
@@ -129,5 +138,59 @@ public class AtractorBullet : Bullet
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, BulletStats.CaptureRange);
+    }
+}
+
+public class OrbitProfile
+{
+    private Vector3 axis;
+    private Transform center;
+    private Transform orbiter;
+    private float orbitSpeed;
+    private float orbitRadius;
+    private float radiusSpeed;
+
+    public OrbitProfile(Transform center,Transform orbiter, float minOrbitSpeed, float maxOrbitSpeed, float minOrbitRadius,float maxOrbitRadius, float minRadiusSpeed, float maxRadiusSpeed)
+    {
+        this.orbiter = orbiter;
+        this.center = center;
+
+        orbitSpeed = Random.Range(minOrbitSpeed,maxOrbitSpeed);
+        orbitRadius = Random.Range(minOrbitRadius, maxOrbitRadius);
+        radiusSpeed = Random.Range(minRadiusSpeed, maxRadiusSpeed);
+
+        int rand = Random.Range(1, 6);
+
+        if (rand == 1)
+        {
+            axis = Vector3.up;
+        }
+        else if (rand == 2)
+        {
+            axis = Vector3.down;
+        }
+        else if (rand == 3)
+        {
+            axis = Vector3.right;
+        }
+        else if (rand == 4)
+        {
+            axis = Vector3.left;
+        }
+        else if (rand == 5)
+        {
+            axis = Vector3.forward;
+        }
+        else if (rand == 6)
+        {
+            axis = Vector3.back;
+        }
+    }
+
+    public void Orbit()
+    {
+        orbiter.RotateAround(center.position ,axis, orbitSpeed * Time.deltaTime);
+        Vector3 desirePos = (orbiter.position - center.position).normalized * orbitRadius + center.position;
+        orbiter.position = Vector3.MoveTowards(orbiter.transform.position, desirePos, Time.deltaTime * radiusSpeed);
     }
 }

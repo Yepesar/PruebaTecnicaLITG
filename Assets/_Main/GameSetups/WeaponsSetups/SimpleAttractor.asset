@@ -18,19 +18,23 @@ MonoBehaviour:
   stats:
     weaponType: 1
     damage: 2
+    range: 20
     bulletStats:
-      bulletSpeed: 2
+      bulletSpeed: 5
       bulletDrop:
         serializedVersion: 2
         m_Curve: []
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-      maxOrbitingObjects: 5
-      minOrbitingSpeed: 2
-      maxOrbitingSpeed: 2
+      minOrbitSpeed: 25
+      maxOrbitSpeed: 300
+      minOrbitRadius: 1.2
+      maxOrbitRadius: 5.5
+      minRadiusSpeed: 25
+      maxRadiusSpeed: 300
+      maxOrbitingObjects: 10
       captureRange: 5
-      orbitingRadius: 2
       targetLayers:
       - serializedVersion: 2
         m_Bits: 64

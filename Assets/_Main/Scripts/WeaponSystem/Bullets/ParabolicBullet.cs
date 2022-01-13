@@ -47,5 +47,7 @@ public class ParabolicBullet : Bullet
         rb.velocity = Vector3.zero;
         StopCoroutine(coroutine);
         coroutine = null;
+        gameObject.SetActive(false);
+
     }
 }
