@@ -78,6 +78,7 @@ public class MissileBullet : Bullet
         StopAllCoroutines();
         targetC = null;
         target = null;
+        ActivateHitVFX(transform.position);
         gameObject.SetActive(false);
     }
 

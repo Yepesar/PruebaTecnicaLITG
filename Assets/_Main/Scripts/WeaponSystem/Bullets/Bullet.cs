@@ -9,20 +9,17 @@ public abstract class Bullet : MonoBehaviour
     private IEnumerator distanceC;
     private BulletStatsModel bulletStats;
     public BulletStatsModel BulletStats { get => bulletStats; set => bulletStats = value; }
-    
-    private void Start()
-    {
-        if (hitVFXPrefab)
-        {
-            PoolingSystem.Instance.CreatePoolItem(hitVFXPrefab, 5, hitVFXPrefab.name);
-        }       
-    }
-
+      
     public void Init(SOWeaponStats weaponStats)
     {
         bulletStats = weaponStats.Stats.BulletStats;
         this.bulletStats.Damage = weaponStats.Stats.Damage;
         this.bulletStats.Range = weaponStats.Stats.Range;
+
+        if (hitVFXPrefab)
+        {
+            PoolingSystem.Instance.CreatePoolItem(hitVFXPrefab, weaponStats.PoolLength, hitVFXPrefab.name);
+        }
 
         if (distanceC == null)
         {
@@ -57,9 +54,7 @@ public abstract class Bullet : MonoBehaviour
 
         if (hitVFXPrefab)
         {
-            GameObject hitVFX = PoolingSystem.Instance.GetAvailableItem(hitVFXPrefab.name);
-            hitVFX.transform.position = transform.position;
-            hitVFX.GetComponent<ParticleSystem>().Play();
+            ActivateHitVFX(transform.position);
         }
 
         StopAllCoroutines();
@@ -72,13 +67,17 @@ public abstract class Bullet : MonoBehaviour
 
         if (hitVFXPrefab)
         {
-            GameObject hitVFX = PoolingSystem.Instance.GetAvailableItem(hitVFXPrefab.name);
-
-            hitVFX.transform.position = transform.position;
-            hitVFX.GetComponent<ParticleSystem>().Play();
+            ActivateHitVFX(transform.position);
         }
 
         StopAllCoroutines();
         gameObject.SetActive(false);
+    }
+
+    public void ActivateHitVFX(Vector3 pos)
+    {
+        GameObject hitVFX = PoolingSystem.Instance.GetAvailableItem(hitVFXPrefab.name);
+        hitVFX.transform.position = pos;
+        hitVFX.GetComponent<ParticleSystem>().Play();
     }
 }

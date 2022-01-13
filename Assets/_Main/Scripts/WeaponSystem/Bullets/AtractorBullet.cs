@@ -118,6 +118,7 @@ public class AtractorBullet : Bullet
         atractedObjects.Clear();
         StopAllCoroutines();
         attractC = null;
+        ActivateHitVFX(transform.position);
         gameObject.SetActive(false);
     }
 
