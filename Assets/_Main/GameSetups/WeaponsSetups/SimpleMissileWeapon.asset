@@ -20,7 +20,7 @@ MonoBehaviour:
     damage: 10
     range: 30
     bulletStats:
-      bulletSpeed: 35
+      bulletSpeed: 10
       bulletDrop:
         serializedVersion: 2
         m_Curve: []
