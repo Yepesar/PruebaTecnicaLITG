@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   profileName: SimpleProjectile
   weaponProjectilePrefab: {fileID: 376495966616068461, guid: e45a66c48e136914cace13b408ee6bf0, type: 3}
-  poolLength: 10
+  poolLength: 40
   stats:
     weaponType: 0
-    weaponRange: 25
     damage: 1
+    range: 25
     bulletStats:
+      bulletSpeed: 35
       bulletDrop:
         serializedVersion: 2
         m_Curve:
@@ -53,8 +54,21 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-      bulletSpeed: 25
-      bulletHeight: 1.5
-    maxAmmo: 10
+      minOrbitSpeed: 0
+      maxOrbitSpeed: 0
+      minOrbitRadius: 0
+      maxOrbitRadius: 0
+      minRadiusSpeed: 0
+      maxRadiusSpeed: 0
+      maxOrbitingObjects: 0
+      captureRange: 0
+      attractorTargetLayers: []
+      rotationSpeed: 0
+      searchingRange: 0
+      missileTargetMasks: []
+    maxAmmo: 25
     shootRate: 1
-    shootTime: 1
+    shootTime: 0.2
+  shakeFrequency: 0.1
+  shakeIntensity: 0.1
+  shakeDuration: 0.1

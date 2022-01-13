@@ -20,7 +20,7 @@ MonoBehaviour:
     damage: 2
     range: 20
     bulletStats:
-      bulletSpeed: 5
+      bulletSpeed: 8
       bulletDrop:
         serializedVersion: 2
         m_Curve: []
@@ -35,9 +35,15 @@ MonoBehaviour:
       maxRadiusSpeed: 300
       maxOrbitingObjects: 10
       captureRange: 5
-      targetLayers:
+      attractorTargetLayers:
       - serializedVersion: 2
         m_Bits: 64
+      rotationSpeed: 0
+      searchingRange: 0
+      missileTargetMasks: []
     maxAmmo: 5
     shootRate: 1
     shootTime: 3
+  shakeFrequency: 0.1
+  shakeIntensity: 0.1
+  shakeDuration: 0.1

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6879652739795845486}
   - component: {fileID: 3142950639802718586}
   - component: {fileID: 7212448946244952455}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AttractorBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

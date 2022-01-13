@@ -9,11 +9,17 @@ public class SOWeaponStats : ScriptableObject
     [SerializeField] private GameObject weaponProjectilePrefab;
     [SerializeField] private int poolLength = 0;
     [SerializeField] private WeaponStatsModel stats;
+    [SerializeField] private float shakeFrequency;
+    [SerializeField] private float shakeIntensity;
+    [SerializeField] private float shakeDuration;
 
     public string ProfileName { get => profileName; set => profileName = value; }
     public GameObject WeaponProjectilePrefab { get => weaponProjectilePrefab; set => weaponProjectilePrefab = value; }
     public WeaponStatsModel Stats { get => stats; set => stats = value; }
     public int PoolLength { get => poolLength; set => poolLength = value; }
+    public float ShakeFrequency { get => shakeFrequency; set => shakeFrequency = value; }
+    public float ShakeIntensity { get => shakeIntensity; set => shakeIntensity = value; }
+    public float ShakeDuration { get => shakeDuration; set => shakeDuration = value; }
 }
 
 public enum WeaponType {Projectile, Attractor, Missile }

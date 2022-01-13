@@ -66,6 +66,7 @@ public class PoolingSystem : MonoBehaviour
             }
            
             obj = targetItem.GameObjects[targetItem.Count - 1];
+            obj.SetActive(true);
             targetItem.Count--;
         }
         else

@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 1823866589617958763}
   - component: {fileID: 8681668737208512559}
   - component: {fileID: 5313879895188641271}
+  - component: {fileID: 2389751466548428801}
+  - component: {fileID: 1628331438648171663}
   m_Layer: 7
   m_Name: ProjectileWeapon
   m_TagString: Weapon
@@ -115,8 +117,37 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.24, y: 0.525, z: 1.29}
+  m_Size: {x: 0.23999998, y: 0.525, z: 1.2899998}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &2389751466548428801
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166440289723879102}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.35, y: 0.68, z: 1.52}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1628331438648171663
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166440289723879102}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 3
 --- !u!1 &3149580037315197724
 GameObject:
   m_ObjectHideFlags: 0

@@ -45,7 +45,12 @@ public class ParabolicBullet : Bullet
     public override void Stop()
     {
         rb.velocity = Vector3.zero;
-        StopCoroutine(coroutine);
+
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+       
         coroutine = null;
         gameObject.SetActive(false);
 

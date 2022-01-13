@@ -20,7 +20,7 @@ MonoBehaviour:
     damage: 10
     range: 30
     bulletStats:
-      bulletSpeed: 15
+      bulletSpeed: 35
       bulletDrop:
         serializedVersion: 2
         m_Curve: []
@@ -44,3 +44,6 @@ MonoBehaviour:
     maxAmmo: 5
     shootRate: 1
     shootTime: 0.5
+  shakeFrequency: 0.1
+  shakeIntensity: 0.1
+  shakeDuration: 0.1
