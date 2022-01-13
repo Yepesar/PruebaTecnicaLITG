@@ -84,9 +84,9 @@ public class AtractorBullet : Bullet
 
     private bool IsTargateable(LayerMask layerMask)
     {
-        for (int i = 0; i < BulletStats.TargetLayers.Length; i++)
+        for (int i = 0; i < BulletStats.AttractorTargetLayers.Length; i++)
         {
-            if (((1 << layerMask) & BulletStats.TargetLayers[i]) != 0)
+            if (((1 << layerMask) & BulletStats.AttractorTargetLayers[i]) != 0)
             {
                 return true;
             }

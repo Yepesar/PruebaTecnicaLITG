@@ -16,7 +16,7 @@ public class SOWeaponStats : ScriptableObject
     public int PoolLength { get => poolLength; set => poolLength = value; }
 }
 
-public enum WeaponType {Projectile, Atractor, Divider }
+public enum WeaponType {Projectile, Attractor, Missile }
 [System.Serializable]
 public class WeaponStatsModel
 {
@@ -61,7 +61,14 @@ public class BulletStatsModel
 
     [SerializeField] private int maxOrbitingObjects;
     [SerializeField] private float captureRange;
-    [SerializeField] private LayerMask[] targetLayers;
+    [SerializeField] private LayerMask[] attractorTargetLayers;
+
+    [Space]
+
+    [Header("Missile settings")]
+    [SerializeField] private float rotationSpeed;
+    [SerializeField] private float searchingRange;
+    [SerializeField] private LayerMask[] missileTargetMasks;
 
     private float range;
     private int damage;
@@ -70,7 +77,7 @@ public class BulletStatsModel
     public float BulletSpeed { get => bulletSpeed; set => bulletSpeed = value; }
     public int Damage { get => damage; set => damage = value; }
     public float CaptureRange { get => captureRange; set => captureRange = value; }
-    public LayerMask[] TargetLayers { get => targetLayers; set => targetLayers = value; }
+    public LayerMask[] AttractorTargetLayers { get => attractorTargetLayers; set => attractorTargetLayers = value; }
     public float MinOrbitSpeed { get => minOrbitSpeed; set => minOrbitSpeed = value; }
     public float MaxOrbitSpeed { get => maxOrbitSpeed; set => maxOrbitSpeed = value; }
     public float MinOrbitRadius { get => minOrbitRadius; set => minOrbitRadius = value; }
@@ -79,4 +86,7 @@ public class BulletStatsModel
     public float MaxRadiusSpeed { get => maxRadiusSpeed; set => maxRadiusSpeed = value; }
     public int MaxOrbitingObjects { get => maxOrbitingObjects; set => maxOrbitingObjects = value; }
     public float Range { get => range; set => range = value; }
+    public float RotationSpeed { get => rotationSpeed; set => rotationSpeed = value; }
+    public LayerMask[] MissileTargetMasks { get => missileTargetMasks; set => missileTargetMasks = value; }
+    public float SearchingRange { get => searchingRange; set => searchingRange = value; }
 }

@@ -3147,7 +3147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 432b68f49a8147b4d9d3e55a3ef09490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponStats: {fileID: 11400000, guid: 762f1969bb1f5664a8feba960aa86bdd, type: 2}
+  weaponStats: {fileID: 11400000, guid: b69753c7b56778e4e905748a3685dda2, type: 2}
   startPoint: {fileID: 1900355279}
   exitPoint: {fileID: 267990645}
 --- !u!1 &1764214107
