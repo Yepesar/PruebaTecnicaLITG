@@ -7,7 +7,6 @@ using StarterAssets;
 public class PlayerWeaponController : MonoBehaviour
 {
     [SerializeField] private Transform weaponPoint;
-    [SerializeField] private Vector3 looktOffset;
 
     private StarterAssetsInputs input;
     private Weapon actualWeapon;
@@ -73,6 +72,19 @@ public class PlayerWeaponController : MonoBehaviour
         actualWeapon.Init();
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Weapon")
+        {
+            if (input.interact && canSwitchWeapon)
+            {
+                ChangeWeapon(other.gameObject.GetComponent<Weapon>());
+                canSwitchWeapon = false;
+                StartCoroutine(SwitchCooldown());
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Weapon")
@@ -80,6 +92,19 @@ public class PlayerWeaponController : MonoBehaviour
             if (input.interact && canSwitchWeapon)
             {
                 ChangeWeapon(other.gameObject.GetComponent<Weapon>());
+                canSwitchWeapon = false;
+                StartCoroutine(SwitchCooldown());
+            }
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Weapon")
+        {
+            if (input.interact && canSwitchWeapon)
+            {
+                ChangeWeapon(collision.gameObject.GetComponent<Weapon>());
                 canSwitchWeapon = false;
                 StartCoroutine(SwitchCooldown());
             }
