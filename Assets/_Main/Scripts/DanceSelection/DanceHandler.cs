@@ -18,8 +18,7 @@ public class DanceHandler : MonoBehaviour
             danceDisplayer.texture = danceData.GetActualDance();
         }
     }
-
-   
+ 
     public void ChangeDacen(int newDance)
     {
         if (newDance == 0)

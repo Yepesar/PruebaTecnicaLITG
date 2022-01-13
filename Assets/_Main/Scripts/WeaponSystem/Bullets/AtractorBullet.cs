@@ -15,8 +15,32 @@ public class AtractorBullet : Bullet
         rb = GetComponent<Rigidbody>();
     }
 
+    private void Update()
+    {
+        if (atractedObjects.Count > 0)
+        {
+            Orbit();
+        }
+    }
+
+    #region Inheritance Methods
+    public override void Stop()
+    {
+        ClearTrail();
+        ReleaseObjects();
+        rb.velocity = Vector3.zero;
+        orbiters.Clear();
+        atractedObjects.Clear();
+        StopAllCoroutines();
+        attractC = null;
+        ActivateHitVFX(transform.position);
+        gameObject.SetActive(false);
+    }
+
     public override void Run(Vector3 direction)
     {
+        ClearTrail();
+
         if (!rb)
         {
             rb = GetComponent<Rigidbody>();
@@ -30,15 +54,9 @@ public class AtractorBullet : Bullet
             StartCoroutine(attractC);
         }
     }
+    #endregion
 
-    private void Update()
-    {
-        if (atractedObjects.Count > 0)
-        {
-            Orbit();
-        }
-    }
-
+    #region Orbit and Attraction Methods
     private void Orbit()
     {
         for (int i = 0; i < orbiters.Count; i++)
@@ -79,20 +97,7 @@ public class AtractorBullet : Bullet
             }
 
             yield return new WaitForEndOfFrame();
-        }       
-    }
-
-    private bool IsTargateable(LayerMask layerMask)
-    {
-        for (int i = 0; i < BulletStats.AttractorTargetLayers.Length; i++)
-        {
-            if (((1 << layerMask) & BulletStats.AttractorTargetLayers[i]) != 0)
-            {
-                return true;
-            }
         }
-
-        return false;
     }
 
     private void ReleaseObjects()
@@ -109,17 +114,20 @@ public class AtractorBullet : Bullet
         atractedObjects.Clear();
         orbiters.Clear();
     }
+    #endregion
 
-    public override void Stop()
+    #region Support Methods
+    private bool IsTargateable(LayerMask layerMask)
     {
-        ReleaseObjects();
-        rb.velocity = Vector3.zero;
-        orbiters.Clear();
-        atractedObjects.Clear();
-        StopAllCoroutines();
-        attractC = null;
-        ActivateHitVFX(transform.position);
-        gameObject.SetActive(false);
+        for (int i = 0; i < BulletStats.AttractorTargetLayers.Length; i++)
+        {
+            if (((1 << layerMask) & BulletStats.AttractorTargetLayers[i]) != 0)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private bool ItemOnPool(GameObject obj)
@@ -140,6 +148,8 @@ public class AtractorBullet : Bullet
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, BulletStats.CaptureRange);
     }
+    #endregion
+
 }
 
 public class OrbitProfile

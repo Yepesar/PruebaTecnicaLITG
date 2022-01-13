@@ -9,12 +9,19 @@ public abstract class Bullet : MonoBehaviour
     private IEnumerator distanceC;
     private BulletStatsModel bulletStats;
     public BulletStatsModel BulletStats { get => bulletStats; set => bulletStats = value; }
-      
-    public void Init(SOWeaponStats weaponStats)
+    private TrailRenderer trailRenderer;
+
+    public abstract void Run(Vector3 direction);
+    public abstract void Stop();
+
+    #region ClassMethods
+   public void Init(SOWeaponStats weaponStats)
     {
         bulletStats = weaponStats.Stats.BulletStats;
         this.bulletStats.Damage = weaponStats.Stats.Damage;
         this.bulletStats.Range = weaponStats.Stats.Range;
+
+        trailRenderer = GetComponent<TrailRenderer>();
 
         if (hitVFXPrefab)
         {
@@ -26,10 +33,9 @@ public abstract class Bullet : MonoBehaviour
             distanceC = ChecktRange();
             StartCoroutine(distanceC);
         }
-    }
 
-    public abstract void Run(Vector3 direction);
-    public abstract void Stop();
+        ClearTrail();
+    }
 
     private IEnumerator ChecktRange()
     {
@@ -74,10 +80,19 @@ public abstract class Bullet : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public void ClearTrail()
+    {
+        if (trailRenderer)
+        {
+            trailRenderer.Clear();
+        }
+    }
+
     public void ActivateHitVFX(Vector3 pos)
     {
         GameObject hitVFX = PoolingSystem.Instance.GetAvailableItem(hitVFXPrefab.name);
         hitVFX.transform.position = pos;
         hitVFX.GetComponent<ParticleSystem>().Play();
     }
+    #endregion
 }

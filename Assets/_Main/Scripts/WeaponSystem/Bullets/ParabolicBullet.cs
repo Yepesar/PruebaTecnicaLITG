@@ -13,8 +13,11 @@ public class ParabolicBullet : Bullet
         rb = GetComponent<Rigidbody>();
     }
 
+    #region Inheritance Methods
     public override void Run(Vector3 direction)
     {
+        ClearTrail();
+
         if (coroutine == null)
         {
             if (!rb)
@@ -31,6 +34,23 @@ public class ParabolicBullet : Bullet
         }
     }
 
+    public override void Stop()
+    {
+        ClearTrail();
+
+        rb.velocity = Vector3.zero;
+
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+
+        coroutine = null;
+        gameObject.SetActive(false);
+
+    }
+    #endregion
+
     private IEnumerator DropControl()
     {       
         while (true)
@@ -40,19 +60,5 @@ public class ParabolicBullet : Bullet
 
             yield return null;
         }
-    }
-
-    public override void Stop()
-    {
-        rb.velocity = Vector3.zero;
-
-        if (coroutine != null)
-        {
-            StopCoroutine(coroutine);
-        }
-       
-        coroutine = null;
-        gameObject.SetActive(false);
-
-    }
+    }   
 }
